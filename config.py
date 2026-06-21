@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-MODEL = "gemini/gemini-1.5-flash"        
-TOC_CHECK_PAGES = 20           # how many pages to scan for TOC
-MAX_PAGES_PER_NODE = 50        # when to split a node further
+MODEL = "groq/llama-3.1-8b-instant"   # fast and free on groq
+TOC_CHECK_PAGES = 20
+MAX_PAGES_PER_NODE = 50
+MAX_TOKEN_NUM_EACH_NODE = 100000
