@@ -1,14 +1,27 @@
 import litellm
+import time
 import json
 from config import MODEL
 
 def ask_llm(prompt):
-    response = litellm.completion(
-        model=MODEL,
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0
-    )
-    return response.choices[0].message.content
+    max_retries = 5
+    for i in range(max_retries):
+        try:
+            response = litellm.completion(
+                model=MODEL,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0
+            )
+            time.sleep(2)   # ← add this, small pause between every call
+            return response.choices[0].message.content
+        except Exception as e:
+            if "429" in str(e) or "RateLimit" in str(e) or "rate_limit" in str(e):
+                wait = 10 * (i + 1)   # 10s, 20s, 30s...
+                print(f"Rate limit hit. Waiting {wait} seconds...")
+                time.sleep(wait)
+            else:
+                raise e
+    return ""
 
 def tag_pages(pages, start_index=0):
     """
