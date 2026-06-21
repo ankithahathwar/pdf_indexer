@@ -14,8 +14,7 @@ env/
 .venv/
 page_ind/
 
-# Output files 
-outputs/
+
 
 # Logs 
 logs/
