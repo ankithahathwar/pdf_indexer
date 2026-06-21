@@ -72,7 +72,7 @@ def extract_structure_from_content(pages):
     Do not say anything else.
     
     Document:
-    {tagged[:15000]}
+    {tagged}
     """
     response = ask_llm(prompt)
     return parse_llm_json(response)
@@ -120,7 +120,7 @@ def extract_structure_from_toc(toc_text, pages, has_page_numbers):
         {toc_text}
         
         Document:
-        {tagged[:15000]}
+        {tagged}
         """
 
     response = ask_llm(prompt)
@@ -152,7 +152,7 @@ def verify_structure(structure, pages):
         Reply ONLY with {{"answer": "yes"}} or {{"answer": "no"}}.
         
         Page text:
-        {page_text[:2000]}
+        {page_text}
         """
         response = ask_llm(prompt)
         try:

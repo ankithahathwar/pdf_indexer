@@ -57,7 +57,7 @@ def run(pdf_path):
     }
 
     os.makedirs("outputs", exist_ok=True)
-    output_path = f"outputs/{pdf_name.replace('.pdf', '')}_groq_llama70b.json"
+    output_path = f"outputs/{pdf_name.replace('.pdf', '')}_groq_llama70b_2.json"
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
 
